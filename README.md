@@ -14,6 +14,7 @@ Note, that the example does not use a Redis server for persistence (as in the ge
 * `docker run -p 4000:80 docker-python-example` - Starts container on port 4000 (add -d to run in background)
 * `docker run -p 4000:80 -v dataShare:/data docker-python-example` - Starts container on port 4000, mounts the dataShare volume (create first with `docker volume create --name dataShare`)
 * `docker container stop <<id>>`
+* `docker run --rm -it 044e1532c690 sh` to sh into a docker layer
 
 To remove all images and containers:
 ```
@@ -22,4 +23,12 @@ To remove all images and containers:
 docker rm $(docker ps -a -q)
 # Delete all images
 docker rmi $(docker images -q)
+```
+
+To publish:
+```
+docker login
+docker build -t xxx .
+docker tag xxx accountname/xxx:latest # or another version
+docker push accountname/xxx
 ```
